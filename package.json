@@ -1,0 +1,23 @@
+{
+  "name": "rossi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^3.5.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node übung2/GenerateContent.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RossiRx/EIA2.git"
+  },
+  "author": "rossi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RossiRx/EIA2/issues"
+  },
+  "homepage": "https://github.com/RossiRx/EIA2#readme"
+}
