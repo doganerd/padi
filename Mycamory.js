@@ -1,14 +1,14 @@
 "use strict";
-//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen
+//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen dshagfriuhiljh
 var Aufg3Memory;
 (function (Aufg3Memory) {
     document.addEventListener("DOMContentLoaded", main);
     // Variablen deklarieren ***************************
-    let cardContent = ["Tetris", "Pong", "Mario", "Zelda", "Minecraft", "Sims", "Portal", "SimCity", "Sonic", "Assassins Creed"];
+    let cardContent = ["Tetris", "Pong", "Mario", "Zelda", "Minecraft", "Sims"];
     let cardArray = []; //Divs für Karten, leeres Array, in das die letztendlich für das Spiel benötigten Karten als divs hineingespeichert werden
     // let openArray: string[] = [];     //leeres Array um später den karteninhalt vergleichen zu können
     let openCards = 0; //später hochzählen, wie viele karten offen sind um nicht mehr als 2 karten offen zu haben
-    let numPairs;
+    let numPairs = 6;
     let numPlayers;
     let name = "Spieler ";
     let score = 0;
@@ -16,12 +16,12 @@ var Aufg3Memory;
     let cardField;
     // Hauptfunktion *******************************
     function main() {
-        numPairs = parseInt(prompt("Bitte Anzahl Kartenpaare eingeben (5 bis 10)", "7"), 10);
-        if (numPairs < 5 || numPairs > 10) {
-            numPairs = 8;
-        } //Pop-up abfrage kartenpaare
-        numPlayers = parseInt(prompt("Bitte Anzahl der Spieler eingeben (1 bis 4)", "2"), 10);
-        numPlayers > 4 ? numPlayers = 4 : numPlayers = numPlayers; //Pop-up spielerzahl
+        //  numPairs = parseInt(prompt("Bitte Anzahl Kartenpaare eingeben (5 bis 10)", "7"), 10);
+        // if (numPairs < 5 || numPairs > 10) {
+        //      numPairs = 8;
+        //   } //Pop-up abfrage kartenpaare 
+        //  numPlayers = parseInt(prompt("Bitte Anzahl der Spieler eingeben (1 bis 4)", "2"), 10);
+        // numPlayers > 4 ? numPlayers = 4 : numPlayers = numPlayers; //Pop-up spielerzahl
         playerInfo = document.getElementById("player-info"); // DOM abhängige Varaiblen deklarieren
         cardField = document.getElementById("card-div");
         // Spielkarten erzeugen

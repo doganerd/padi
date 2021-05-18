@@ -1,0 +1,83 @@
+body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: #000;
+  font-family: Helvetica, sans-serif;
+}
+
+#video {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg);
+  -moz-transform:rotateY(180deg);
+}
+
+#image {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg);
+  -moz-transform:rotateY(180deg);
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 5s;
+}
+
+#frame {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-left-style: solid;
+  border-left-width: 400px;
+  border-left-color: black;
+  border-right-style: solid;
+  border-right-width: 400px;
+  border-right-color: black;
+  margin-left: -400px;
+  pointer-events: none;
+}
+
+#button, #countdown {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  border-radius: 50%;
+}
+
+#button {
+  background-color: red;
+}
+
+#countdown {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: red;
+  pointer-events: none;
+}
+
+#circle {
+  position: absolute;
+  box-sizing: border-box;
+  top: -5px;
+  left: -5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: red;
+}
+
+.hide {
+  display: none;
+}

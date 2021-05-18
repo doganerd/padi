@@ -1,4 +1,4 @@
-//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen
+//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen dshagfriuhiljh
 
 namespace Aufg3Memory {
 
@@ -6,14 +6,14 @@ namespace Aufg3Memory {
 
     // Variablen deklarieren ***************************
 
-    let cardContent: string[] = ["Tetris", "Pong", "Mario", "Zelda", "Minecraft", "Sims", "Portal", "SimCity", "Sonic", "Assassins Creed"];
+    let cardContent: string[] = ["Tetris", "Pong", "Mario", "Zelda", "Minecraft", "Sims"];
 
     let cardArray: HTMLElement[] = []; //Divs für Karten, leeres Array, in das die letztendlich für das Spiel benötigten Karten als divs hineingespeichert werden
 
     // let openArray: string[] = [];     //leeres Array um später den karteninhalt vergleichen zu können
     let openCards: number = 0;      //später hochzählen, wie viele karten offen sind um nicht mehr als 2 karten offen zu haben
 
-    let numPairs: number;
+    let numPairs: number = 6;
     let numPlayers: number;
 
     let name: string = "Spieler ";
@@ -29,13 +29,13 @@ namespace Aufg3Memory {
 
     function main(): void {
 
-        numPairs = parseInt(prompt("Bitte Anzahl Kartenpaare eingeben (5 bis 10)", "7"), 10);
-        if (numPairs < 5 || numPairs > 10) {
-            numPairs = 8;
-        } //Pop-up abfrage kartenpaare
+        //  numPairs = parseInt(prompt("Bitte Anzahl Kartenpaare eingeben (5 bis 10)", "7"), 10);
+        // if (numPairs < 5 || numPairs > 10) {
+        //      numPairs = 8;
+        //   } //Pop-up abfrage kartenpaare 
 
-        numPlayers = parseInt(prompt("Bitte Anzahl der Spieler eingeben (1 bis 4)", "2"), 10);
-        numPlayers > 4 ? numPlayers = 4 : numPlayers = numPlayers; //Pop-up spielerzahl
+        //  numPlayers = parseInt(prompt("Bitte Anzahl der Spieler eingeben (1 bis 4)", "2"), 10);
+        // numPlayers > 4 ? numPlayers = 4 : numPlayers = numPlayers; //Pop-up spielerzahl
 
         playerInfo = document.getElementById("player-info");  // DOM abhängige Varaiblen deklarieren
         cardField = document.getElementById("card-div");
@@ -109,7 +109,7 @@ namespace Aufg3Memory {
         console.log("ClickHandler aktiviert");
         let cardClass: HTMLElement = <HTMLElement>_event.target;    //auf das HTML element zugreifen, dass das event auslöst
         if (cardClass.classList.contains("card")) {          //.classList gibt die Klasse zurück
-           
+
             // console.log("ClickHandler - Klasse enthaelt card = true");
             if (cardClass.classList.contains("hidden")) {
                 openCards++;
@@ -117,14 +117,14 @@ namespace Aufg3Memory {
                 // console.log("ClickHandler - Klasse Hidden=true => Karte aufgedeckt"); 
                 cardClass.classList.remove("hidden"); //remove klasse hidden
                 cardClass.classList.add("visible");     //karte visible
-               // console.log(cardClass.classList);
+                // console.log(cardClass.classList);
 
             }
 
         }
         if (openCards == 2) {
             console.log("2 Karten sind offen und werden verglichen");
-            setTimeout(compareCards, 1300);it itr
+            setTimeout(compareCards, 1300); it itr
         }
 
         if (openCards > 2) {
