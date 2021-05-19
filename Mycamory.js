@@ -61,21 +61,8 @@ var Aufg3Memory;
         playerInfo.appendChild(scoreField); //score in die playerinfo anhängen
     }
 
-   function nextPlayerTurn() {
-       if (currentPlayer == FieldValue.Wrong) {
-           currentPlayer = FieldValue.Right
-       } else {
-           currentPlayer = FieldValue.Wrong
-       }
-   }
 
-   function FieldValue getCurrentPlayer() {
-       return currentPlayer;
-   }
 
-   function ArrayList<Field> getFields() {
-       return fields;
-   }
 
     function createCard(_textDerAufDieKarteSoll) {
         let card = document.createElement("div");
@@ -145,6 +132,9 @@ var Aufg3Memory;
         openArray = []; // Array leeren
         openCards = 0; //zähler auf 0 setzen
     }
+
+
+
     function filterCardsByClass(_visibleFilter) {
         return cardArray.filter(card => card.classList.contains(_visibleFilter));
     }

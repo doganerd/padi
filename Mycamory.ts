@@ -170,6 +170,31 @@ namespace Aufg3Memory {
     }
 
 
+
+let CardValue: string = "wrong"
+let currentPlayer: number = 0
+
+function nextPlayerTurn(): void {
+    if (currentPlayer == 0) {
+        console.log("NoPair");
+        currentPlayer = CardValue.Right
+    } else {
+        console.log("Pair");
+        
+        currentPlayer = CardValue.Wrong
+    }
+}
+
+function CardValue getCurrentPlayer() {
+    return currentPlayer;
+}
+
+function ArrayList<Card> getFields() {
+    return fields;
+}
+
+
+
     function filterCardsByClass(_visibleFilter: string): HTMLElement[] {
         return cardArray.filter(card => card.classList.contains(_visibleFilter));
     }
