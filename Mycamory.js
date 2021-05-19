@@ -45,6 +45,7 @@ var Aufg3Memory;
             // dem Spielbrett hinzufügen
         }
         cardField.addEventListener("click", clickHandler);
+
     }
     // Funktionen ***************************************************
     function createPlayer(_score, _name) {
@@ -59,6 +60,23 @@ var Aufg3Memory;
         playerInfo.appendChild(player); //spieler in die playerinfo anhängen
         playerInfo.appendChild(scoreField); //score in die playerinfo anhängen
     }
+
+   function nextPlayerTurn() {
+       if (currentPlayer == FieldValue.Wrong) {
+           currentPlayer = FieldValue.Right
+       } else {
+           currentPlayer = FieldValue.Wrong
+       }
+   }
+
+   function FieldValue getCurrentPlayer() {
+       return currentPlayer;
+   }
+
+   function ArrayList<Field> getFields() {
+       return fields;
+   }
+
     function createCard(_textDerAufDieKarteSoll) {
         let card = document.createElement("div");
         // div erzeugen
