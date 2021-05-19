@@ -25,6 +25,12 @@ namespace Aufg3Memory {
 
 
 
+    /*  let inputField: HTMLInputElement;
+     let pictureName: File; */
+
+
+
+
     // Hauptfunktion *******************************
 
     function main(): void {
@@ -124,7 +130,7 @@ namespace Aufg3Memory {
         }
         if (openCards == 2) {
             console.log("2 Karten sind offen und werden verglichen");
-            setTimeout(compareCards, 1300); it itr
+            setTimeout(compareCards, 1300);
         }
 
         if (openCards > 2) {
@@ -167,6 +173,36 @@ namespace Aufg3Memory {
     function filterCardsByClass(_visibleFilter: string): HTMLElement[] {
         return cardArray.filter(card => card.classList.contains(_visibleFilter));
     }
+
+    // inputField = <HTMLInputElement>document.getElementById("takePictureField");
+    // inputField.addEventListener("change", () => { pictureName = inputField.value; console.log(pictureName); });
+
+    document.addEventListener("DOMContentLoaded", (ev) => {
+        let form = document.getElementById("myform");
+        //get the captured media file
+        let input = document.getElementById("capture");
+
+        input.addEventListener("change", (ev) => {
+            console.dir(input.files[0]);
+            if (input.files[0].type.indexOf("image/") > -1) {
+                let img = document.getElementById("img");
+                img.src = window.URL.createObjectURL(input.files[0]);
+            }
+            else if (input.files[0].type.indexOf("audio/") > -1) {
+                let audio = document.getElementById("audio");
+                audio.src = window.URL.createObjectURL(input.files[0]);
+            }
+            else if (input.files[0].type.indexOf("video/") > -1) {
+                let video = document.getElementById("video");
+                video.src = window.URL.createObjectURL(input.files[0]);
+            }
+
+
+        })
+
+    })
+
+
 
 
 } //Namespace zu
