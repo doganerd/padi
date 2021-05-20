@@ -189,9 +189,6 @@ function CardValue getCurrentPlayer() {
     return currentPlayer;
 }
 
-function ArrayList<Card> getFields() {
-    return fields;
-}
 
 
 
