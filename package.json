@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/node": "^15.3.0",
     "mongodb": "^3.5.8"
   },
   "devDependencies": {},

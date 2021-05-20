@@ -1,4 +1,4 @@
-//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen dshagfriuhiljh
+//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen 
 
 namespace Aufg3Memory {
 
@@ -168,6 +168,28 @@ namespace Aufg3Memory {
         openArray = []; // Array leeren
         openCards = 0; //zähler auf 0 setzen
     }
+
+
+
+let CardValue: string = "wrong"
+let currentPlayer: number = 0
+
+function nextPlayerTurn(): void {
+    if (currentPlayer == 0) {
+        console.log("NoPair");
+        currentPlayer = CardValue.Right
+    } else {
+        console.log("Pair");
+        
+        currentPlayer = CardValue.Wrong
+    }
+}
+
+function CardValue getCurrentPlayer() {
+    return currentPlayer;
+}
+
+
 
 
     function filterCardsByClass(_visibleFilter: string): HTMLElement[] {
