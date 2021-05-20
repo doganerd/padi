@@ -198,9 +198,9 @@ namespace Aufg3Memory {
             }
 
 
-        })
+        });
 
-    })
+    });
 
 
 
