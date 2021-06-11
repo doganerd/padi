@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node übung2/GenerateContent.js"
+    "start": "node Server/Server.js"
   },
   "repository": {
     "type": "git",
