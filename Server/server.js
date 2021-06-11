@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const WebSocket = require("ws");
 const models_1 = require("./models");
 // get port from shell or set default (8000)
-const port = Number(8000);
+const port = Number(1234);
 const MAX_PICTURES = 4;
 console.log("Server starting");
 // list of tables

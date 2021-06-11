@@ -4,7 +4,7 @@ import {Card, Message, MESSAGE_KEY, Player, Table, Connection, PLAYER_TYPE, GAME
 
 
 // get port from shell or set default (8000)
-const port: number = Number(8000);
+const port: number = Number(1234);
 
 const MAX_PICTURES = 4;
 
