@@ -1,5 +1,5 @@
 "use strict";
-//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen dshagfriuhiljh
+//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen 
 var Aufg3Memory;
 (function (Aufg3Memory) {
     document.addEventListener("DOMContentLoaded", main);
@@ -45,7 +45,6 @@ var Aufg3Memory;
             // dem Spielbrett hinzufügen
         }
         cardField.addEventListener("click", clickHandler);
-
     }
     // Funktionen ***************************************************
     function createPlayer(_score, _name) {
@@ -60,10 +59,6 @@ var Aufg3Memory;
         playerInfo.appendChild(player); //spieler in die playerinfo anhängen
         playerInfo.appendChild(scoreField); //score in die playerinfo anhängen
     }
-
-
-
-
     function createCard(_textDerAufDieKarteSoll) {
         let card = document.createElement("div");
         // div erzeugen
@@ -132,9 +127,23 @@ var Aufg3Memory;
         openArray = []; // Array leeren
         openCards = 0; //zähler auf 0 setzen
     }
-
-
-
+    let CardValue = "wrong";
+    let currentPlayer = 0;
+    function nextPlayerTurn() {
+        if (currentPlayer == 0) {
+            console.log("NoPair");
+            currentPlayer = CardValue.Right;
+        }
+        else {
+            console.log("Pair");
+            currentPlayer = CardValue.Wrong;
+        }
+    }
+    function CardValue() { }
+    getCurrentPlayer();
+    {
+        return currentPlayer;
+    }
     function filterCardsByClass(_visibleFilter) {
         return cardArray.filter(card => card.classList.contains(_visibleFilter));
     }

@@ -171,23 +171,23 @@ namespace Aufg3Memory {
 
 
 
-let CardValue: string = "wrong"
-let currentPlayer: number = 0
+    let CardValue: string = "wrong"
+    let currentPlayer: number = 0
 
-function nextPlayerTurn(): void {
-    if (currentPlayer == 0) {
-        console.log("NoPair");
-        currentPlayer = CardValue.Right
-    } else {
-        console.log("Pair");
-        
-        currentPlayer = CardValue.Wrong
+    function nextPlayerTurn(): void {
+        if (currentPlayer == 0) {
+            console.log("NoPair");
+            currentPlayer = CardValue.Right
+        } else {
+            console.log("Pair");
+
+            currentPlayer = CardValue.Wrong
+        }
     }
-}
 
-function CardValue getCurrentPlayer() {
-    return currentPlayer;
-}
+    function CardValue getCurrentPlayer() {
+        return currentPlayer;
+    }
 
 
 
