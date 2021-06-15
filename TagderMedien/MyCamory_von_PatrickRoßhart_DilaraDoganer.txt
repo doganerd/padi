@@ -1,5 +1,7 @@
-URL: 
+URL: https://doganerd.github.io/padi/TagderMedien/MyCamory_von_PatrickRo%C3%9Fhart_DilaraDoganer.txt
+
 
 Wir, Patrick Roßhart und Dilara Doganer und sind die Konzepter von MyCamory. Wir bieten eine Real-Time Anwendung, die es allen Zielgruppen ermöglicht eine moderne Version des klassischen Kartenspiels Memory zu spielen. 
 
 Im Unterschied zu anderen Spiel-Anwendungen, ermöglichen wir ein individuelles Memory, wo die User ihre eigenen Spielkarten aussuchen und fotografieren können. Somit frischen wir ein allerseits bekanntes Spiel auf und erneuern den Spaßfaktor. Bald kannst auch Du unsere Anwendung ausprobieren.
+
