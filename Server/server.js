@@ -4,7 +4,7 @@ const WebSocket = require("ws");
 const models_1 = require("./models");
 // get port from shell or set default (8000)
 const port = Number(process.env.PORT) || 8000;
-const MAX_PICTURES = 4;
+const MAX_PICTURES = 8;
 console.log("Server starting");
 // list of tables
 let tableList = [];
@@ -131,8 +131,10 @@ server.on("connection", (socket) => {
         }
     });
     socket.on("close", () => {
-        //TODO delete from table???
-        // clientSockets.pop(socket);
+        // connection1.socket.close();
+        // connection2.socket.close();
+        // tableList.splice(tableList.findIndex(t => t.name === table.name), 1);
+        // table.player1.connectionId...
     });
 });
 function sendError(connection) {

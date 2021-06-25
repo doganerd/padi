@@ -1,12 +1,12 @@
 import { send } from "process";
 import * as WebSocket from "ws";
-import {Card, Message, MESSAGE_KEY, Player, Table, Connection, PLAYER_TYPE, GAME_OVER} from "./models";
+import { Card, Message, MESSAGE_KEY, Player, Table, Connection, PLAYER_TYPE, GAME_OVER } from "./models";
 
 
 // get port from shell or set default (8000)
 const port: number = Number(process.env.PORT) || 8000;
 
-const MAX_PICTURES = 4;
+const MAX_PICTURES = 8;
 
 console.log("Server starting");
 // list of tables
@@ -119,13 +119,15 @@ server.on("connection", (socket: any) => {
 
                             //evaluate the two open cards
                             table.evaluatePlayMove();
-                            setTimeout(()=>{ if (table.gameEnded) {  //check whether game ended
-                                sendUpdate(table, connection1, connection2);
-                                sendGameOver(table, connection1, connection2);
-                                closeTable(table, connection1, connection2);
-                            } else { // send update
-                                sendUpdate(table, connection1, connection2);
-                            }},1300);
+                            setTimeout(() => {
+                                if (table.gameEnded) {  //check whether game ended
+                                    sendUpdate(table, connection1, connection2);
+                                    sendGameOver(table, connection1, connection2);
+                                    closeTable(table, connection1, connection2);
+                                } else { // send update
+                                    sendUpdate(table, connection1, connection2);
+                                }
+                            }, 1300);
 
                         }
                     } else {
@@ -140,8 +142,10 @@ server.on("connection", (socket: any) => {
     });
 
     socket.on("close", () => {
-        //TODO delete from table???
-        // clientSockets.pop(socket);
+       // connection1.socket.close();
+        // connection2.socket.close();
+       // tableList.splice(tableList.findIndex(t => t.name === table.name), 1);
+       // table.player1.connectionId...
     });
 });
 
@@ -165,7 +169,7 @@ function sendOpenCard(cardId: string, connection1: Connection, connection2: Conn
 }
 
 function sendGameOver(table: Table, connection1: Connection, connection2: Connection) {
-//TODO;
+    //TODO;
     console.log("Game over");
 
     let gameOverMessageP1 = new Message();
@@ -174,28 +178,28 @@ function sendGameOver(table: Table, connection1: Connection, connection2: Connec
     let gameOverMessageP2 = new Message();
     gameOverMessageP2.key = MESSAGE_KEY.GAME_OVER;
 
-    if(table.player1.score>table.player2.score){
+    if (table.player1.score > table.player2.score) {
         //P1 won
-        gameOverMessageP1.data={
+        gameOverMessageP1.data = {
             result: GAME_OVER.WIN
         }
-        gameOverMessageP2.data={
+        gameOverMessageP2.data = {
             result: GAME_OVER.LOSS
         }
-    }else if(table.player1.score<table.player2.score){
+    } else if (table.player1.score < table.player2.score) {
         //P2 won
-        gameOverMessageP1.data={
+        gameOverMessageP1.data = {
             result: GAME_OVER.LOSS
         }
-        gameOverMessageP2.data={
+        gameOverMessageP2.data = {
             result: GAME_OVER.WIN
         }
-    }else if(table.player1.score===table.player2.score){
+    } else if (table.player1.score === table.player2.score) {
         //draw
-        gameOverMessageP1.data={
+        gameOverMessageP1.data = {
             result: GAME_OVER.DRAW
         }
-        gameOverMessageP2.data={
+        gameOverMessageP2.data = {
             result: GAME_OVER.DRAW
         }
 
@@ -233,10 +237,10 @@ function sendUpdate(table: Table, connection1: Connection, connection2: Connecti
     sendMessage(updateMessagePlayer2, connection2);
 }
 
-function closeTable(table: Table, connection1: Connection, connection2: Connection){
+function closeTable(table: Table, connection1: Connection, connection2: Connection) {
     connection1.socket.close();
     connection2.socket.close();
-    tableList.splice(tableList.findIndex(t => t.name ===table.name),1);
+    tableList.splice(tableList.findIndex(t => t.name === table.name), 1);
 }
 
 function validTurn(table: Table, connectionId: string): boolean {
@@ -274,7 +278,7 @@ function startGame(table: Table) {
 }
 
 function sendMessage(message: Message, connection: Connection) {
-    console.log("Send",message.key);
+    console.log("Send", message.key);
     const messageString: string = JSON.stringify(message);
     connection.socket.send(messageString);
 }
