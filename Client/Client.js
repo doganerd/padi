@@ -65,7 +65,7 @@ var camory;
     let picturesLeft = 3;
     function main() {
         // socket = new WebSocket("ws://192.168.0.198:8000/");
-        socket = new WebSocket("ws://camory.herokuapp.com");
+        socket = new WebSocket("wss://camory.herokuapp.com");
         console.log("Connected to Server");
         socket.addEventListener("message", (event) => checkServerMessage(event));
         createStartElements();
