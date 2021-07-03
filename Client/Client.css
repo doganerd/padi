@@ -156,10 +156,10 @@ button {
 /* Spielbrett */
 #card-field {
     height: auto;
-    max-width: 78%;
+    max-width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    margin-left: 20%;
+    
 }
 
 #card-field h2 {
@@ -177,8 +177,8 @@ button {
 }
 
 .card {
-    height: 300px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
     border-radius: 15px;
     margin: 0px 20px 20px 0px;
     text-align: center;
