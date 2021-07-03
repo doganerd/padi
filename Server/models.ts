@@ -16,6 +16,7 @@ export class Table {
     openCard1: string;
     openCard2: string;
     gameEnded: boolean;
+    gameStarte: boolean = false;
 
 
     mixCards() {

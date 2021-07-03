@@ -68,12 +68,14 @@ server.on("connection", (socket) => {
                 // add Pictures to table
                 //console.log(clientMessage.data.picture);
                 if (clientMessage.data?.picture) {
-                    let cardToAdd = new models_1.Card(clientMessage.data.picture);
-                    table.cards.push(cardToAdd);
-                    let cardToAdd2 = new models_1.Card(clientMessage.data.picture);
-                    table.cards.push(cardToAdd2);
-                    if (table.cards.length >= MAX_PICTURES) {
-                        startGame(table);
+                    if (table.cards.length <= MAX_PICTURES - 2) {
+                        let cardToAdd = new models_1.Card(clientMessage.data.picture);
+                        table.cards.push(cardToAdd);
+                        let cardToAdd2 = new models_1.Card(clientMessage.data.picture);
+                        table.cards.push(cardToAdd2);
+                        if (table.cards.length >= MAX_PICTURES) {
+                            startGame(table);
+                        }
                     }
                 }
                 else {
@@ -233,21 +235,24 @@ function validTurn(table, connectionId) {
     return player.turn;
 }
 function startGame(table) {
-    table.mixCards();
-    table.generateStates();
-    table.player1.turn = true;
-    table.player2.turn = false;
-    let connection1 = getConnectionById(table.player1.connectionId);
-    let connection2 = getConnectionById(table.player2.connectionId);
-    let startMessage = new models_1.Message();
-    startMessage.key = models_1.MESSAGE_KEY.START_GAME;
-    startMessage.data = {
-        cards: table.cards
-    };
-    if (connection1 && connection2) {
-        sendMessage(startMessage, connection1);
-        sendMessage(startMessage, connection2);
-        sendUpdate(table, connection1, connection2);
+    if (!table.gameStarted) {
+        table.gameStarted = true;
+        table.mixCards();
+        table.generateStates();
+        table.player1.turn = true;
+        table.player2.turn = false;
+        let connection1 = getConnectionById(table.player1.connectionId);
+        let connection2 = getConnectionById(table.player2.connectionId);
+        let startMessage = new models_1.Message();
+        startMessage.key = models_1.MESSAGE_KEY.START_GAME;
+        startMessage.data = {
+            cards: table.cards
+        };
+        if (connection1 && connection2) {
+            sendMessage(startMessage, connection1);
+            sendMessage(startMessage, connection2);
+            sendUpdate(table, connection1, connection2);
+        }
     }
 }
 function sendMessage(message, connection) {

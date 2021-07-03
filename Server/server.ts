@@ -77,13 +77,15 @@ server.on("connection", (socket: any) => {
                 // add Pictures to table
                 //console.log(clientMessage.data.picture);
                 if (clientMessage.data?.picture) {
-                    let cardToAdd = new Card(clientMessage.data.picture);
-                    table.cards.push(cardToAdd);
-                    let cardToAdd2 = new Card(clientMessage.data.picture);
-                    table.cards.push(cardToAdd2);
+                    if (table.cards.length <= MAX_PICTURES - 2) {
+                        let cardToAdd = new Card(clientMessage.data.picture);
+                        table.cards.push(cardToAdd);
+                        let cardToAdd2 = new Card(clientMessage.data.picture);
+                        table.cards.push(cardToAdd2);
 
-                    if (table.cards.length >= MAX_PICTURES) {
-                        startGame(table);
+                        if (table.cards.length >= MAX_PICTURES) {
+                            startGame(table);
+                        }
                     }
                 }
                 else {
@@ -142,10 +144,10 @@ server.on("connection", (socket: any) => {
     });
 
     socket.on("close", () => {
-       // connection1.socket.close();
+        // connection1.socket.close();
         // connection2.socket.close();
-       // tableList.splice(tableList.findIndex(t => t.name === table.name), 1);
-       // table.player1.connectionId...
+        // tableList.splice(tableList.findIndex(t => t.name === table.name), 1);
+        // table.player1.connectionId...
     });
 });
 
@@ -256,24 +258,27 @@ function validTurn(table: Table, connectionId: string): boolean {
 }
 
 function startGame(table: Table) {
-    table.mixCards();
-    table.generateStates();
-    table.player1.turn = true;
-    table.player2.turn = false;
+    if (!table.gameStarted) {
+        table.gameStarted = true;
+        table.mixCards();
+        table.generateStates();
+        table.player1.turn = true;
+        table.player2.turn = false;
 
-    let connection1 = getConnectionById(table.player1.connectionId);
-    let connection2 = getConnectionById(table.player2.connectionId);
+        let connection1 = getConnectionById(table.player1.connectionId);
+        let connection2 = getConnectionById(table.player2.connectionId);
 
-    let startMessage = new Message();
-    startMessage.key = MESSAGE_KEY.START_GAME;
-    startMessage.data = {
-        cards: table.cards
-    }
+        let startMessage = new Message();
+        startMessage.key = MESSAGE_KEY.START_GAME;
+        startMessage.data = {
+            cards: table.cards
+        }
 
-    if (connection1 && connection2) {
-        sendMessage(startMessage, connection1);
-        sendMessage(startMessage, connection2);
-        sendUpdate(table, connection1, connection2);
+        if (connection1 && connection2) {
+            sendMessage(startMessage, connection1);
+            sendMessage(startMessage, connection2);
+            sendUpdate(table, connection1, connection2);
+        }
     }
 }
 

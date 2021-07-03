@@ -4,6 +4,7 @@ exports.Card = exports.PLAYER_TYPE = exports.Player = exports.Connection = expor
 const crypto_1 = require("crypto");
 class Table {
     constructor(name) {
+        this.gameStarte = false;
         this.name = name;
         this.cards = [];
         this.gameEnded = false;
