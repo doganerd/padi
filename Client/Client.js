@@ -48,7 +48,7 @@ var camory;
     let textDiv;
     let managers = [];
     const imageWidth = 400;
-    const imageHeight = 600;
+    const imageHeight = 400;
     let image;
     let video;
     let buttonDiv;
@@ -69,7 +69,6 @@ var camory;
         console.log("Connected to Server");
         socket.addEventListener("message", (event) => checkServerMessage(event));
         createStartElements();
-        // adapt canvas and image size to normalized image size
     }
     function createStartElements() {
         startNewGameButton = document.getElementById("startNewGameButton");
@@ -148,24 +147,9 @@ var camory;
                     updateGame(gameState);
                 }
                 break;
-            case MESSAGE_KEY.FOUND_PAIR:
-                console.log("Found pair");
-                openCard(message.data.card2Id);
-                removeCard(message.data.card1Id);
-                removeCard(message.data.card2Id);
-                setTurn(message.data.turn);
-                break;
             case MESSAGE_KEY.OPEN:
                 console.log("open");
                 openCard(message.data.cardId);
-                break;
-            case MESSAGE_KEY.FAILED:
-                for (let card of openCards) {
-                    card.classList.remove('visible');
-                    card.classList.remove('taken');
-                    card.classList.add('hidden');
-                }
-                setTurn(message.data.turn);
                 break;
             case MESSAGE_KEY.GAME_OVER:
                 if (message?.data?.result) {
@@ -201,34 +185,6 @@ var camory;
         console.log("ClickHandler aktiviert");
         let card = _event.target; //auf das HTML element zugreifen, dass das event auslöst
         sendOpenCard(card.id);
-        // let cardClass: HTMLElement = <HTMLElement>_event.target;    //auf das HTML element zugreifen, dass das event auslöst
-        // console.log(cardClass);
-        // if (cardClass.classList.contains("card")) {          //.classList gibt die Klasse zurück
-        //
-        //     // console.log("ClickHandler - Klasse enthaelt card = true");
-        //     if (cardClass.classList.contains("hidden")) {
-        //         openCards++;
-        //         //wenn Klasse hidden ist, mache das:
-        //         // console.log("ClickHandler - Klasse Hidden=true => Karte aufgedeckt");
-        //         cardClass.classList.remove("hidden"); //remove klasse hidden
-        //         cardClass.classList.add("visible");     //karte visible
-        //         // console.log(cardClass.classList);
-        //         console.log(cardClass.id);
-        //         sendOpenCard(cardClass.id);
-        //
-        //     }
-        //
-        // }
-        // if (openCards == 2) {
-        //     console.log("2 Karten sind offen und werden verglichen");
-        //     // setTimeout(compareCards, 1300);
-        // }
-        //
-        // if (openCards > 2) {
-        //     console.log("2 Karten sind schon offen, keine weitere öffnen");
-        //     cardClass.classList.remove("visible");
-        //     cardClass.classList.add("hidden");
-        // }
     }
     function createField() {
         // Karten dem Spielbrett hinzufügen
