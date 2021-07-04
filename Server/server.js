@@ -4,7 +4,7 @@ const WebSocket = require("ws");
 const models_1 = require("./models");
 // get port from shell or set default (8000)
 const port = Number(process.env.PORT) || 8000;
-const MAX_PICTURES = 4;
+const MAX_PICTURES = 8;
 console.log("Server starting");
 // list of tables
 let tableList = [];
@@ -68,12 +68,14 @@ server.on("connection", (socket) => {
                 // add Pictures to table
                 //console.log(clientMessage.data.picture);
                 if (clientMessage.data?.picture) {
-                    let cardToAdd = new models_1.Card(clientMessage.data.picture);
-                    table.cards.push(cardToAdd);
-                    let cardToAdd2 = new models_1.Card(clientMessage.data.picture);
-                    table.cards.push(cardToAdd2);
-                    if (table.cards.length >= MAX_PICTURES) {
-                        startGame(table);
+                    if (table.cards.length <= MAX_PICTURES - 2) {
+                        let cardToAdd = new models_1.Card(clientMessage.data.picture);
+                        table.cards.push(cardToAdd);
+                        let cardToAdd2 = new models_1.Card(clientMessage.data.picture);
+                        table.cards.push(cardToAdd2);
+                        if (table.cards.length >= MAX_PICTURES) {
+                            startGame(table);
+                        }
                     }
                 }
                 else {
@@ -131,8 +133,10 @@ server.on("connection", (socket) => {
         }
     });
     socket.on("close", () => {
-        //TODO delete from table???
-        // clientSockets.pop(socket);
+        // connection1.socket.close();
+        // connection2.socket.close();
+        // tableList.splice(tableList.findIndex(t => t.name === table.name), 1);
+        // table.player1.connectionId...
     });
 });
 function sendError(connection) {
@@ -231,21 +235,24 @@ function validTurn(table, connectionId) {
     return player.turn;
 }
 function startGame(table) {
-    table.mixCards();
-    table.generateStates();
-    table.player1.turn = true;
-    table.player2.turn = false;
-    let connection1 = getConnectionById(table.player1.connectionId);
-    let connection2 = getConnectionById(table.player2.connectionId);
-    let startMessage = new models_1.Message();
-    startMessage.key = models_1.MESSAGE_KEY.START_GAME;
-    startMessage.data = {
-        cards: table.cards
-    };
-    if (connection1 && connection2) {
-        sendMessage(startMessage, connection1);
-        sendMessage(startMessage, connection2);
-        sendUpdate(table, connection1, connection2);
+    if (!table.gameStarted) {
+        table.gameStarted = true;
+        table.mixCards();
+        table.generateStates();
+        table.player1.turn = true;
+        table.player2.turn = false;
+        let connection1 = getConnectionById(table.player1.connectionId);
+        let connection2 = getConnectionById(table.player2.connectionId);
+        let startMessage = new models_1.Message();
+        startMessage.key = models_1.MESSAGE_KEY.START_GAME;
+        startMessage.data = {
+            cards: table.cards
+        };
+        if (connection1 && connection2) {
+            sendMessage(startMessage, connection1);
+            sendMessage(startMessage, connection2);
+            sendUpdate(table, connection1, connection2);
+        }
     }
 }
 function sendMessage(message, connection) {
