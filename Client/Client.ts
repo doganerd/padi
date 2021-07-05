@@ -1,4 +1,4 @@
-//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen
+
 
 namespace camory {
 

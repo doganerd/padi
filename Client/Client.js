@@ -1,5 +1,4 @@
 "use strict";
-//Aufbau immer so bitte! : DOM, eventListener, alle Variablen benennen, alle Funtionen
 var camory;
 (function (camory) {
     let MESSAGE_KEY;
