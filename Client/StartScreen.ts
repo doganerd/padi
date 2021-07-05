@@ -26,7 +26,7 @@ class StartScreen {
     return new Promise((resolve) => {
       this.screenDiv.style.display = "block";
 
-      this.setText("touch screen to start");
+      this.setText("touch here to start");
 
       this.screenDiv.addEventListener("click", () => {
         this.setText("checking for resources...");
